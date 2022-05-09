@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import { ModalController } from '@ionic/angular';
-import { PokelistPageModule } from '../pokelist/pokelist.module';
 import { DepositModalComponent } from '../deposit-modal/deposit-modal.component';
 @Component({
   selector: 'app-home',
