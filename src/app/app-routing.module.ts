@@ -12,11 +12,6 @@ const routes: Routes = [
     pathMatch: 'full'
   },
 
-  {
-    path: 'pokelist/:name',
-    loadChildren: () => import('./pokelist/pokelist.module').then( m => m.PokelistPageModule)
-  },
-
 ];
 
 @NgModule({
