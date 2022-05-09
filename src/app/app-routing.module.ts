@@ -11,6 +11,12 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+
+  {
+    path: 'pokelist/:id',
+    loadChildren: () => import('./pokelist/pokelist.module').then( m => m.PokelistPageModule)
+  },
+
 ];
 
 @NgModule({
