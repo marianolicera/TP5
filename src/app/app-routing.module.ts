@@ -13,7 +13,7 @@ const routes: Routes = [
   },
 
   {
-    path: 'pokelist/:id',
+    path: 'pokelist/:name',
     loadChildren: () => import('./pokelist/pokelist.module').then( m => m.PokelistPageModule)
   },
 
