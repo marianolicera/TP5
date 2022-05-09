@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{nombre}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismissModal()">Cerrar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col text-center>
+        Altura: {{pokemon.height}}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col text-center>
+        Peso: {{pokemon.weight}}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col text-center>
+        Experiencia: {{pokemon.base_experience}}
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
