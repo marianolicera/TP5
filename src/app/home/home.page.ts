@@ -20,18 +20,20 @@ export class HomePage implements OnInit {
     private storage: Storage
   ) {}
 
-  ngOnInit(){
-      this.http.get<any>('https://pokeapi.co/api/v2/pokemon?offset=0&limit=50')
-      .subscribe(res => {
-        this.pkmn = res.results;
-        this.pokemons = JSON.stringify(this.pkmn);
-        this.setObject();
-        //this.getObject();
-      });
-
-  }
-
-
+  ngOnInit() {
+    this.storage.get( { key:'pokemons'} ).then( pokemons => {
+          if ( pokemons ) {
+            this.pkmn = pokemons;
+          } else {
+            this.http.get<any>('https://pokeapi.co/api/v2/pokemon?offset=0&limit=50').subscribe(res =>{
+              this.pkmn = res.results;
+              this.pokemons=JSON.stringify(this.pkmn);
+              this.setObject();
+            }
+            );
+          }
+        });
+      }
   async setObject() {
     await Storage.set({
       key: 'pokemons',
