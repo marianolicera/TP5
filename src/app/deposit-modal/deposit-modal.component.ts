@@ -18,10 +18,6 @@ export class DepositModalComponent implements OnInit {
     private http: HttpClient
   ) { }
 
-  pokemons = getObjetct();
-  if () {
-    
-  })
   ngOnInit() {
     this.http.get('https://pokeapi.co/api/v2/pokemon/' + this.nombre)
     .subscribe(res => this.pokemon = res);
