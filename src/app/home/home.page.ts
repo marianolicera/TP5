@@ -17,7 +17,6 @@ export class HomePage implements OnInit {
   constructor(
     private http: HttpClient,
     private modalCtrl: ModalController,
-    private storage: Storage
   ) {}
   ngOnInit() {
     Storage.get( { key: 'pokemons' } ).then( pokemons => {
