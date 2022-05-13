@@ -20,13 +20,16 @@ export class HomePage implements OnInit {
   ) {}
   ngOnInit() {
     Storage.get( { key: 'pokemons' } ).then( pokemons => {
-          if ( pokemons ) {
-            this.pokemons = pokemons;
+          if ( pokemons && pokemons.value && pokemons.value.length > 0) {
+            this.pkmn = JSON.parse(pokemons.value); //no uso getObject porque me tira un error de any en la promesa
+            console.log(pokemons);
+            console.log('Se obtuvo por almacenamiento');
+            // this.pkmn = this.getObject();
           } else {
             this.http.get<any>('https://pokeapi.co/api/v2/pokemon?offset=0&limit=50')
             .subscribe(res => {
               this.pkmn = res.results;
-              //console.log(this.pkmn);
+              console.log(this.pkmn);
               //this.pokemons = JSON.stringify(this.pkmn);
               this.setObject(this.pkmn);
             });
@@ -43,6 +46,7 @@ async setObject(pokemon) {
 async getObject() {
   const ret = await Storage.get({ key: 'pokemons' });
   const pokemons = JSON.parse(ret.value);
+  return pokemons;
 }
 }
 
