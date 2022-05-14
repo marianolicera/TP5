@@ -13,6 +13,7 @@ export class HomePage implements OnInit {
 
   pkmn: Array <any> = [];
   pokemons;
+  dataPkmn;
 
   constructor(
     private http: HttpClient,
@@ -22,7 +23,8 @@ export class HomePage implements OnInit {
     Storage.get( { key: 'pokemons' } ).then( pokemons => {
           if ( pokemons && pokemons.value && pokemons.value.length > 0) {
             this.pkmn = JSON.parse(pokemons.value); //no uso getObject porque me tira un error de any en la promesa
-            console.log(pokemons);
+            this.dataPkmn=Object.values(this.pkmn);
+            console.log(this.dataPkmn);
             console.log('Se obtuvo por almacenamiento');
             // this.pkmn = this.getObject();
           } else {
