@@ -16,7 +16,9 @@ export class HomePage implements OnInit {
   ) {}
   ngOnInit() {
     this.getPokemons().then(pokemons => {
+      //this.pokemons = Object.values(pokemons);
       this.pokemons = pokemons;
+      console.log(pokemons);
     }).catch(() => {
       this.http.get<any>('https://pokeapi.co/api/v2/pokemon?offset=0&limit=50')
       .subscribe(async res => {
