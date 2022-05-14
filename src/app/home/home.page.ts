@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import { ModalController } from '@ionic/angular';
-import { DepositModalComponent } from '../deposit-modal/deposit-modal.component';
+import { Storage } from '@capacitor/storage';
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -9,29 +9,42 @@ import { DepositModalComponent } from '../deposit-modal/deposit-modal.component'
 })
 export class HomePage implements OnInit {
 
-  pkmn = [];
+  pokemons: Array<{name: string; url: string}> = [];
 
   constructor(
     private http: HttpClient,
-    private modalCtrl: ModalController
   ) {}
-
-  ngOnInit(){
+  ngOnInit() {
+    this.getPokemons().then(pokemons => {
+      this.pokemons = pokemons;
+    }).catch(() => {
       this.http.get<any>('https://pokeapi.co/api/v2/pokemon?offset=0&limit=50')
-      .subscribe(res => {
-        this.pkmn = res.results;
-        console.log(this.pkmn);
+      .subscribe(async res => {
+        this.pokemons = res.results;
+        this.setObject(this.pokemons);
       });
-
+    });
   }
 
-  async openModal(nombre){
-    const modal = await this.modalCtrl.create({
-      component: DepositModalComponent,
-      componentProps: {nombre: nombre}
-    })
-
-    await modal.present();
-  }
-
+setObject(pokemon) {
+  Storage.set({
+    key: 'pokemons',
+    value: JSON.stringify(pokemon)
+  });
 }
+
+getPokemons(): Promise<Array<{name: string; url: string}>> {
+  return new Promise<Array<{name: string; url: string}>>(async (resolve, reject) => {
+    const ret = await Storage.get({ key: 'pokemons' });
+    if (ret.value && ret.value.length > 0) {
+      const pokemons = JSON.parse(ret.value);
+      resolve(pokemons);
+    } else {
+      reject();
+    }
+  });
+}
+}
+
+
+

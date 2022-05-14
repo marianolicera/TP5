@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { Storage } from '@capacitor/storage';
 
 @Component({
   selector: 'app-deposit-modal',
@@ -10,7 +11,7 @@ import { ModalController } from '@ionic/angular';
 export class DepositModalComponent implements OnInit {
 
   @Input() nombre: string;
-  pokemon: Object;
+  pokemon: object;
 
   constructor(
     private modalCtrl: ModalController,
@@ -19,10 +20,10 @@ export class DepositModalComponent implements OnInit {
 
   ngOnInit() {
     this.http.get('https://pokeapi.co/api/v2/pokemon/' + this.nombre)
-    .subscribe(res => this.pokemon = res)
+    .subscribe(res => this.pokemon = res);
   }
 
   dismissModal(){
-    this.modalCtrl.dismiss()
+    this.modalCtrl.dismiss();
   }
 }
