@@ -8,8 +8,8 @@
 
 <ion-content>
   <ion-list>
-    <ion-item button *ngFor="let data of dataPkmn" (click)="openModal(data.value.name)">
-        <ion-label>{{data}}</ion-label>
+    <ion-item button *ngFor="let pokemon of pokemons" (click)="openModal(data.value.name)">
+        <ion-label>{{pokemon.name}}</ion-label>
     </ion-item>
   </ion-list>
 </ion-content>
