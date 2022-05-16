@@ -26,4 +26,6 @@ export class DepositModalComponent implements OnInit {
   dismissModal(){
     this.modalCtrl.dismiss();
   }
+  
+
 }
