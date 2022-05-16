@@ -8,13 +8,11 @@
 
 <ion-content>
   <ion-list>
-    <!-- <ion-item *ngFor="let data of pkmn" [routerLink]="['/pokelist/' + data.name]"> -->
-    <ion-item button *ngFor="let data of pkmn">
-      <ion-button slot="end" (click)="openModal(data.name)">Detalles</ion-button>
-        <ion-button slot="end" color="danger"(click)="eliminar(data.name)">Eliminar</ion-button>
-      <ion-label>{{data.name}}</ion-label> 
+
+    <ion-item button *ngFor="let pokemon of pokemons">
+      <ion-button slot="end" (click)="openModal(pokemon.name)">Detalles</ion-button>
+        <ion-button slot="end" color="danger"(click)="eliminar(pokemon.name)">Eliminar</ion-button>
+      <ion-label>{{pokemon.name}}</ion-label> 
     </ion-item>
   </ion-list>
 </ion-content>
-
-
