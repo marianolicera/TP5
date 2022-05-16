@@ -15,9 +15,4 @@ const routes: Routes = [
 })
 export class HomePageRoutingModule {
 
-    prueba() 
-    {
-  alert("Holaaaaa");
-}
- 
 }

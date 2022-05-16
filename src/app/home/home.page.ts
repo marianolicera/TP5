@@ -76,8 +76,10 @@ export class HomePage implements OnInit {
           var indice = this.pkmn.findIndex(element => element.name == nombre );
           this.pkmn.splice(indice, 1);
            console.log( this.pkmn );
-           this.showConfirmToast();
-        
+          // this.showConfirmToast();
+            Toast.show({
+              text: 'Pokemon eliminado correctamente'
+            });
           }
         }
       ]
