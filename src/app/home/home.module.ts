@@ -19,3 +19,4 @@ import { DepositModalComponent } from '../deposit-modal/deposit-modal.component'
   entryComponents: [DepositModalComponent]
 })
 export class HomePageModule {}
+
